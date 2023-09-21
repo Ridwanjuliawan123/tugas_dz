@@ -1,0 +1,24 @@
+.card {
+  background-color: #F5DEB3;
+  height: 320px;
+}
+.dsc {
+  display: flex;
+  align-items: l;
+}
+.dsc img {
+  width: auto;
+  height: 20px;
+}
+.dsc p {
+  padding-top: 15px;
+  padding-left: 10px;
+  color: #000000;
+}
+h5,
+p {
+  color: #006666;
+}
+.row {
+  margin-top: 20px;
+}
