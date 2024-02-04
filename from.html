@@ -1,0 +1,44 @@
+<?php
+$mysqli = new mysqli("localhost", "root", "", "projekcrud");
+?>
+
+<!-- HTML -->
+<h2>LATIHAN INPUT DATA KE DALAM DATABASE</h2>
+<form method="post" action="proses_input.php">
+    <table>
+        <tr>
+            <td>Nama</td>
+            <td><input type="text" name="nama"></td>
+        </tr>
+        <tr>
+            <td>Jenis Kelamin</td>
+            <td>
+                <input type="radio" name="jeniskelamin" value="laki-laki">Laki-laki
+                <input type="radio" name="jeniskelamin" value="perempuan">Perempuan
+            </td>
+        </tr>
+        <tr>
+            <td>Alamat</td>
+            <td><input type="text" name="alamat"></td>
+        </tr>
+    </table>
+</form>
+<label>
+        <input type="submit" value="kirim" class="btn">
+        <input type="submit" value="save">
+</label>
+
+<!-- CSS -->
+<style>
+    html{
+        background-color: #222;
+        color: #fff;
+        font-family: sans-serif;
+    }
+    label{
+        margin-left: 7%;
+    }
+    .btn{
+        margin-right: 5%;
+    }
+</style>
