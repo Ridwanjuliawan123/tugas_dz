@@ -1,41 +1,50 @@
 <?php
+// panggil koneksinya
 require_once 'koneksi.php';
-
 ?>
-
 <!DOCTYPE html>
 <html>
-    <style>
-        .menu {
-            display:flex;
-        } 
-
-        .menu>ul {
-            display:flex;
-            align-items:center;
-            list-style-type:none;
-            gap:20px;
-        }
-
-        .menu>ul>li>a{
-            text-decoration:none;
-            color:black;
-            font-weight:bold;
-            background-color:grey;
-            padding:10px;
-            border-radius:10px;
-        }
-    </style>
-    <body>
-        <h2> SELAMAT DATANG DI PERPUSTAKAAN SMKN 1 SUBANG </h2>
-        <h4> Silahkan klik menu di bawah </h4>
-        <div class="menu">
-            <ul class="list_menu">
-                <li><a href="peminjaman.php">Peminjaman</a></li>
-                <li><a href="buku.php">Buku</a></li>
-                <li><a href="anggota.php">Anggota</a></li>
-                <li><a href="admin.php">Admin</a></li>
-            </ul>
-        </div>
-    </body>
+<head>
+  <title>PLajariKode - CRUD dengan PHP MySQLi</title>
+</head>
+<body>
+  <h1>PlajariKode - CRUD dengan PHP MySQLi</h1>
+  
+  <!-- 
+  Create atau menambahkan data baru 
+  Data akan dikirimkan ke add.php untuk diproses
+  -->
+  <form method="post" action="add.php">
+    <input type="text" name="nama_produk" placeholder="Nama Produk">
+    <input type="number" name="harga" placeholder="Harga">
+    <input type="number" name="qty" placeholder="Qty">
+    <input type="submit" name="submit" value="Tambah Data">
+  </form><br/>
+<!-- Read atau menampilkan data dari database -->
+  <table border="1">
+    <tr>
+      <th>No.</th> <th>Nama Produk</th>
+      <th>Harga</th>
+      <th>Qty</th>
+      <th colspan="2">Aksi</th>
+    </tr>
+<?php
+    // Tampilkan semua data
+    $q = $conn->query("SELECT * FROM produk");
+$no = 1; // nomor urut
+    while ($dt = $q->fetch_assoc()) :
+    ?>
+<tr>  
+      <td><?= $no++ ?></td>
+      <td><?= $dt['nama_produk'] ?></td>
+      <td><?= $dt['harga'] ?></td>
+      <td><?= $dt['qty'] ?></td>
+      <td><a href="update.php?id=<?= $dt['id_produk'] ?>">Ubah</a></td>
+      <td><a href="delete.php?id=<?= $dt['id_produk'] ?>" onclick="return confirm('Anda yakin akan menghapus data ini?')">Hapus</a></td>
+    </tr>
+<?php
+    endwhile;
+    ?>
+</table>
+</body> 
 </html>
